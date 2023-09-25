@@ -2,10 +2,12 @@
 install pyttsx3
 pip install pyttsx3
 '''
-from random import randint,shuffle
+from random import randint
 import pyttsx3
 import csv
+import os
 
+os.system('cls')
 f = open('word.csv', newline='', encoding='utf-8')
 word = list(csv.reader(f, delimiter=','))
 wordlen = len(word)
@@ -18,6 +20,7 @@ def Pinyin(fun):
     num = 0
     error = []
     topic = []
+    yans = []
     if(fun == 1):
         engine = pyttsx3.init()
     for i in range(10):
@@ -34,9 +37,11 @@ def Pinyin(fun):
         ans = input('answer：')
         if(ans != word[num][0]):
             error.append(word[num])
-            
-    for err in error:
-        print('{0:<18}{2:<8}{1:<20}'.format(err[0],err[1],err[2]))
+            yans.append(ans)
+    
+    os.system('cls')       
+    for i in range(len(error)):
+        print('{0:<18}{1:<18}{3:<12}{2:<20}'.format(yans[i],error[i][0],error[i][1],error[i][2]))
     print('答錯' + str(len(error)) + '題')
 
 def choose(fun):
@@ -63,7 +68,7 @@ def choose(fun):
         ansn = cosn
         Options[str(cosn)] = word[num][1]
         Dreg.remove(cosn)
-        for i in range(3):
+        for n in range(3):
             cosn = Dreg[randint(0,len(Dreg)-1)]
             Options[str(cosn)] = word[randint(rannum+1,wordlen-1)][1]
             while(1):
@@ -72,20 +77,22 @@ def choose(fun):
                 else:
                     Dreg.remove(cosn)
                     break
-        print('1：%-18s2：%-18s3：%-18s4：%-18s' % (Options['1'],Options['2'],Options['3'],Options['4']))
+        print('1：%-18s\n2：%-18s\n3：%-18s\n4：%-18s' % (Options['1'],Options['2'],Options['3'],Options['4']))
         if(fun == 1):
             engine.say(word[num][0])
             engine.runAndWait()
         ans = input('answer：')
         if(ans != str(ansn)):
             error.append(word[num])
+        os.system('cls')
     for err in error:
-        print('{0:<18}{2:<8}{1:<20}'.format(err[0],err[1],err[2]))
+        print('{0:<18}{2:<12}{1:<20}'.format(err[0],err[1],err[2]))
     print('答錯' + str(len(error)) + '題')
     
 def test():
     while(1):
         mod = int(input('1.拼字無聲, 2.拼字有聲, 3.選字無聲, 4.選字有聲：'))
+        os.system('cls')
         if(mod == 1):
             Pinyin(0)
         elif(mod == 2):
