@@ -13,12 +13,13 @@ word = list(csv.reader(f, delimiter=','))
 wordlen = len(word)
 f.close()
 
-rannum = 140
+rannum = 0
 testnum = 10
 
 def settung():
     global rannum,testnum,wordlen
-    print('總題數：' + str(wordlen))
+    print('總題數：' + str(wordlen - 1))
+    print('答題範圍 ' + str(rannum) + '~' + str(wordlen - 1) + '\t作答題數 ' + str(testnum),end ='\n\n')
     rannum = int(input('答題範圍(題號到最後一題)：'))
     testnum = int(input('作答題數：'))
     
@@ -100,7 +101,7 @@ def choose(fun):
     
 def test():
     while(1):
-        mod = int(input('1.拼字無聲, 2.拼字有聲, 3.選字無聲, 4.選字有聲, 5.設定：'))
+        mod = int(input('0.設定, 1.拼字無聲, 2.拼字有聲, 3.選字無聲, 4.選字有聲,：'))
         os.system('cls')
         if(mod == 1):
             Pinyin(0)
@@ -110,7 +111,7 @@ def test():
             choose(0)
         elif(mod == 4):
             choose(1)
-        elif(mod == 5):
+        elif(mod == 0):
             settung()
         else:
             break;
