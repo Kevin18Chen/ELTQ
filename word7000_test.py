@@ -13,18 +13,20 @@ word = list(csv.reader(f, delimiter=','))
 wordlen = len(word)
 f.close()
 
-rannum = 0
+rannums = 0
+rannuml = wordlen - 1
 testnum = 10
 
 def settung():
-    global rannum,testnum,wordlen
+    global testnum,rannums,rannuml,wordlen
     print('總題數：' + str(wordlen - 1))
-    print('答題範圍 ' + str(rannum) + '~' + str(wordlen - 1) + '\t作答題數 ' + str(testnum),end ='\n\n')
-    rannum = int(input('答題範圍(題號到最後一題)：'))
+    print('答題範圍 ' + str(rannums) + '~' + str(rannuml) + '\t作答題數 ' + str(testnum),end ='\n\n')
+    rannums = int(input('答題範圍(開始)：'))
+    rannuml = int(input('答題範圍(結束)：'))
     testnum = int(input('作答題數：'))
     
 def Pinyin(fun):
-    global word,wordlen,rannum,testnum
+    global word,wordlen,rannums,rannuml,testnum
     num = 0
     error = []
     topic = []
@@ -32,10 +34,10 @@ def Pinyin(fun):
     if(fun == 1):
         engine = pyttsx3.init()
     for i in range(testnum):
-        num = randint(rannum+1,wordlen-1)
+        num = randint(rannums,rannuml)
         try:
             while(topic.index(num) >= 0):
-                num = randint(rannum+1,wordlen-1)
+                num = randint(rannums,rannuml)
         except:
             topic.append(num)
         #print('答對：{0:<10}答錯：{1:<10}'.format(testnum-len(error),len(error)))
@@ -54,7 +56,7 @@ def Pinyin(fun):
     print('答錯' + str(len(error)) + '題')
 
 def choose(fun):
-    global word,wordlen,rannum,testnum
+    global word,wordlen,rannums,rannuml,testnum
     num = 0
     cosn = 0
     ansn = 0
@@ -65,10 +67,10 @@ def choose(fun):
     for i in range(testnum):
         Options = {'1':'','2':'','3':'','4':''}
         Dreg = [1,2,3,4]
-        num = randint(rannum+1,wordlen-1)
+        num = randint(rannums,rannuml)
         try:
             while(topic.index(num) >= 0):
-                num = randint(rannum+1,wordlen-1)
+                num = randint(rannums,rannuml)
                 topic.index(num)
         except:
             topic.append(num)
@@ -80,10 +82,10 @@ def choose(fun):
         Dreg.remove(cosn)
         for n in range(3):
             cosn = Dreg[randint(0,len(Dreg)-1)]
-            Options[str(cosn)] = word[randint(rannum+1,wordlen-1)][1]
+            Options[str(cosn)] = word[randint(rannums,rannuml)][1]
             while(1):
                 if(Options[str(cosn)] == word[num][1]):
-                    Options[str(cosn)] = word[randint(rannum+1,wordlen-1)][1]
+                    Options[str(cosn)] = word[randint(rannums,rannuml)][1]
                 else:
                     Dreg.remove(cosn)
                     break
@@ -101,7 +103,7 @@ def choose(fun):
     
 def test():
     while(1):
-        mod = int(input('0.設定, 1.拼字無聲, 2.拼字有聲, 3.選字無聲, 4.選字有聲,：'))
+        mod = int(input('0.設定, 1.拼字無聲, 2.拼字有聲, 3.選字無聲, 4.選字有聲：'))
         os.system('cls')
         if(mod == 1):
             Pinyin(0)
