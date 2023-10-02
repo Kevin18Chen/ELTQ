@@ -1,25 +1,40 @@
 '''
-install pyttsx3
+windows
 pip install pyttsx3
+linux
+pip install pyttsx3
+maybe
+sudo apt install espeak
+sudo apt-get install alsa-utils
 '''
 from random import randint
 import pyttsx3
 import csv
+import platform
 import os
 
-os.system('cls')
+def clear_screen(os_name):
+    if(os_name == 'Windows'):
+        os.system('cls')
+    elif(os_name == 'Linux'):
+        os.system('clear')
+        
+os_name = platform.system()
 f = open('word.csv', newline='', encoding='utf-8')
 word = list(csv.reader(f, delimiter=','))
 wordlen = len(word)
 f.close()
 
-rannums = 0
+clear_screen(os_name)
+
+rannums = 1
 rannuml = wordlen - 1
 testnum = 10
 
 def settung():
     global testnum,rannums,rannuml,wordlen
-    print('總題數：' + str(wordlen - 1))
+    clear_screen(os_name)
+    print('總題數：' + str(wordlen - 1) + '\tOS：' + str(os_name))
     print('答題範圍 ' + str(rannums) + '~' + str(rannuml) + '\t作答題數 ' + str(testnum),end ='\n\n')
     rannums = int(input('答題範圍(開始)：'))
     rannuml = int(input('答題範圍(結束)：'))
@@ -50,7 +65,7 @@ def Pinyin(fun):
             error.append(word[num])
             yans.append(ans)
     
-    os.system('cls')       
+    clear_screen(os_name)     
     for i in range(len(error)):
         print('{0:<18}{1:<18}{3:<12}{2:<20}'.format(yans[i],error[i][0],error[i][1],error[i][2]))
     print('答錯' + str(len(error)) + '題')
@@ -96,7 +111,7 @@ def choose(fun):
         ans = input('answer：')
         if(ans != str(ansn)):
             error.append(word[num])
-        os.system('cls')
+        clear_screen(os_name)
     for err in error:
         print('{0:<18}{2:<12}{1:<20}'.format(err[0],err[1],err[2]))
     print('答錯' + str(len(error)) + '題')
@@ -104,7 +119,7 @@ def choose(fun):
 def test():
     while(1):
         mod = int(input('0.設定, 1.拼字無聲, 2.拼字有聲, 3.選字無聲, 4.選字有聲：'))
-        os.system('cls')
+        clear_screen(os_name)
         if(mod == 1):
             Pinyin(0)
         elif(mod == 2):
