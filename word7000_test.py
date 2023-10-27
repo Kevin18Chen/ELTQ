@@ -20,7 +20,7 @@ def clear_screen(os_name):
         os.system('clear')
         
 os_name = platform.system()
-f = open('word.csv', newline='', encoding='utf-8')
+f = open('page96_97.csv', newline='', encoding='utf-8')
 word = list(csv.reader(f, delimiter=','))
 wordlen = len(word)
 f.close()
@@ -44,6 +44,7 @@ def typewd(fun):
     global word,wordlen,rannums,rannuml,testnum
     num = 0
     ans = ''
+    ex = False
     topic = []
     if(fun == 1):
         engine = pyttsx3.init()
@@ -57,12 +58,22 @@ def typewd(fun):
         print(str(i + 1) + '：' + str(word[num][0]) + '\t' + str(word[num][1]) + '\t' + str(word[num][2]))
         if(fun == 1):
             engine.say(word[num][0])
+            engine.say(word[num][1])
             engine.runAndWait()
+        ans = input('answer：')
         while(ans != word[num][0]):
             try:
+                if(fun == 1):
+                    engine.say(word[num][0])
+                    engine.say(word[num][1])
+                    engine.runAndWait()
                 ans = input('answer：')
             except KeyboardInterrupt:
+                ex = True
                 break
+        if(ex == True):
+            clear_screen(os_name) 
+            break
         clear_screen(os_name) 
     
 def Pinyin(fun):
@@ -143,24 +154,27 @@ def choose(fun):
     
 def test():
     while(1):
-        mod = int(input('0.設定, 1.拼字無聲, 2.拼字有聲, 3.選字無聲, 4.選字有聲, 5.練習無聲, 6.練習有聲：'))
-        clear_screen(os_name)
-        if(mod == 1):
-            Pinyin(0)
-        elif(mod == 2):
-            Pinyin(1)
-        elif(mod == 3):
-            choose(0)
-        elif(mod == 4):
-            choose(1)
-        elif(mod == 5):
-            typewd(0)
-        elif(mod == 6):
-            typewd(1)
-        elif(mod == 0):
-            settung()
-        else:
-            break;
+        try:
+            mod = int(input('0.設定, 1.拼字無聲, 2.拼字有聲, 3.選字無聲, 4.選字有聲, 5.練習無聲, 6.練習有聲：'))
+            clear_screen(os_name)
+            if(mod == 1):
+                Pinyin(0)
+            elif(mod == 2):
+                Pinyin(1)
+            elif(mod == 3):
+                choose(0)
+            elif(mod == 4):
+                choose(1)
+            elif(mod == 5):
+                typewd(0)
+            elif(mod == 6):
+                typewd(1)
+            elif(mod == 0):
+                settung()
+            else:
+                break;
+        except KeyboardInterrupt:
+                break
 
 if(__name__ == '__main__'):
     test()
