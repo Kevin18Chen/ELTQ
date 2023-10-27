@@ -39,6 +39,31 @@ def settung():
     rannums = int(input('答題範圍(開始)：'))
     rannuml = int(input('答題範圍(結束)：'))
     testnum = int(input('作答題數：'))
+
+def typewd(fun):
+    global word,wordlen,rannums,rannuml,testnum
+    num = 0
+    ans = ''
+    topic = []
+    if(fun == 1):
+        engine = pyttsx3.init()
+    for i in range(testnum):
+        num = randint(rannums,rannuml)
+        try:
+            while(topic.index(num) >= 0):
+                num = randint(rannums,rannuml)
+        except:
+            topic.append(num)
+        print(str(i + 1) + '：' + str(word[num][0]) + '\t' + str(word[num][1]) + '\t' + str(word[num][2]))
+        if(fun == 1):
+            engine.say(word[num][0])
+            engine.runAndWait()
+        while(ans != word[num][0]):
+            try:
+                ans = input('answer：')
+            except KeyboardInterrupt:
+                break
+        clear_screen(os_name) 
     
 def Pinyin(fun):
     global word,wordlen,rannums,rannuml,testnum
@@ -118,7 +143,7 @@ def choose(fun):
     
 def test():
     while(1):
-        mod = int(input('0.設定, 1.拼字無聲, 2.拼字有聲, 3.選字無聲, 4.選字有聲：'))
+        mod = int(input('0.設定, 1.拼字無聲, 2.拼字有聲, 3.選字無聲, 4.選字有聲, 5.練習無聲, 6.練習有聲：'))
         clear_screen(os_name)
         if(mod == 1):
             Pinyin(0)
@@ -128,8 +153,14 @@ def test():
             choose(0)
         elif(mod == 4):
             choose(1)
+        elif(mod == 5):
+            typewd(0)
+        elif(mod == 6):
+            typewd(1)
         elif(mod == 0):
             settung()
         else:
             break;
-test()
+
+if(__name__ == '__main__'):
+    test()
