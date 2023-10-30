@@ -30,16 +30,23 @@ clear_screen(os_name)
 rannums = 1
 rannuml = wordlen - 1
 testnum = 10
+funset = 1  
 
 def settung():
-    global testnum,rannums,rannuml,wordlen
+    global testnum,rannums,rannuml,wordlen,funset
     clear_screen(os_name)
     print('總題數：' + str(wordlen - 1) + '\tOS：' + str(os_name))
-    print('答題範圍 ' + str(rannums) + '~' + str(rannuml) + '\t作答題數 ' + str(testnum),end ='\n\n')
+    print('答題範圍 ' + str(rannums) + '~' + str(rannuml) + '\t作答題數 ' + str(testnum) + '\t語音 ' + str(funset),end ='\n\n')
     rannums = int(input('答題範圍(開始)：'))
     rannuml = int(input('答題範圍(結束)：'))
     testnum = int(input('作答題數：'))
+    funset = int(input('語音(0/1)：'))
 
+def wordlist():
+    global word,rannums,rannuml,wordlen
+    for i in range(rannums,rannuml+1):
+        print('{0:<18}{2:<12}{1:<20}'.format(word[i][0],word[i][1],word[i][2]))
+        
 def typewd(fun):
     global word,wordlen,rannums,rannuml,testnum
     num = 0
@@ -153,22 +160,19 @@ def choose(fun):
     print('答錯' + str(len(error)) + '題')
     
 def test():
+    global funset
     while(1):
         try:
-            mod = int(input('0.設定, 1.拼字無聲, 2.拼字有聲, 3.選字無聲, 4.選字有聲, 5.練習無聲, 6.練習有聲：'))
+            mod = int(input('0.設定, 1.單字表, 2.練習, 3.拼字, 4.選字：'))
             clear_screen(os_name)
-            if(mod == 1):
-                Pinyin(0)
-            elif(mod == 2):
-                Pinyin(1)
-            elif(mod == 3):
-                choose(0)
+            if(mod == 3):
+                Pinyin(funset)
             elif(mod == 4):
-                choose(1)
-            elif(mod == 5):
-                typewd(0)
-            elif(mod == 6):
-                typewd(1)
+                choose(funset)
+            elif(mod == 2):
+                typewd(funset)
+            elif(mod == 1):
+                wordlist()
             elif(mod == 0):
                 settung()
             else:
