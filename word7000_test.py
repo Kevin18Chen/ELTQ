@@ -157,8 +157,16 @@ def choose(fun):
         clear_screen(os_name)
     for err in error:
         print('{0:<18}{2:<12}{1:<20}'.format(err[0],err[1],err[2]))
-    print('答錯' + str(len(error)) + '題')
-    
+    print('答對：{0:<10}答錯：{1:<10}'.format(testnum-len(error),len(error)))
+    #print('答錯' + str(len(error)) + '題')
+
+def find(s):
+    global word,rannums,rannuml,wordlen
+    for i in range(rannums,rannuml+1):
+        if(word[i][0] == s):
+            print('{0:<12}{1:<20}'.format(word[i][2],word[i][1]))
+            break
+
 def test():
     global funset
     while(1):
@@ -175,8 +183,10 @@ def test():
                 wordlist()
             elif(mod == 0):
                 settung()
+            elif(mod == 9):
+                find(input())
             else:
-                break;
+                break
         except KeyboardInterrupt:
                 break
 

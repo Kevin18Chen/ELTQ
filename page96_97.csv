@@ -30,7 +30,7 @@ response,回覆,n
 electricity,電,n
 decades,幾十年,n
 engineer,工程師,v n
-actuators,執行器,n
+actuator,執行器,n
 motion,運動,n
 generating,產生,v
 device,裝置,n
@@ -51,7 +51,7 @@ barbell,槓鈴,n
 exhibit,展示,v n
 property,財產,n
 scale,尺度,v n
-envariance,不變性,adj
+invariance,不變性,adj
 equally,一樣,adj adv
 efficiently,有效率的,adv
 which,哪個,pron
@@ -126,3 +126,51 @@ medical,醫療的,n adj
 footwear,鞋類,n
 industry,產業,n adj
 bring,帶來,v
+start-up,啟動,v n
+firm,公司,v n adj adv
+replace,代替,v
+substantial,重大的,adj
+myriad,無數,n adj
+regularly,常,adv
+mention,提到,v n
+cheaper,更便宜,adj
+novel,新穎,n adj
+revolutionize,徹底改變,v
+director,指揮者,n
+business,商業,n
+ubiquitous,無所不在的,adj
+pick,挑選,v n
+stores,商店,v n
+shape,形狀,v n
+modified,修改的,v adj
+voltage,電壓,n
+applied,應用,adj
+mechanism,機制,n
+puts,賣權,v m
+automatic,自動的,n adj
+action,行動,n
+feature,特徵,v n
+object,物體,v n
+law,法律,n
+multiplies,乘以,v
+factor,因素,v n
+parts,部分,v n
+secret,秘密,n adj
+behind,在後面,n adv prop
+invention,發明,n
+phenomenon,現象,n
+animal,動物,n adj
+order,命令,v n
+related,有關的,adj
+provide,提供,v
+forward,向前,v n adj adv
+flexible,靈活的,adj
+fashion,時尚,v n
+pressure,壓力,v n
+lift,舉起,v n
+demonstrate,證明,v
+encourage,鼓勵,v
+themselves,他們自己,prop
+polymers whose shape is modified when a voltage is applied to them,當施加電壓時形狀會改變的聚合物,electroactive polymer
+a mechanism that puts something into automatic action,一種使某物自動動作的機制,actuator
+a feature of objects or laws that do not change if length scales are multiplied by a common factor,如果長度尺度乘以一個公因子，則物體或定律不會改變的特徵,scale invariance
